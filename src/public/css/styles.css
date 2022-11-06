@@ -1,0 +1,34 @@
+img {
+    width: 500px;
+    height: 500px;
+    transform: rotate(90deg);
+    object-fit: cover;
+    border: none;
+}
+
+.btn-edit {
+    outline: none;
+    border: none;
+    background-color: rgb(255, 69, 0);
+    border-radius: 4px;
+    color: white;
+    box-shadow: 1px 1px 10px rgba(255, 69, 0, 0.2);
+}
+
+.btn-delete {
+    outline: none;
+    border: none;
+    background-color: rgb(89, 186, 204);
+    border-radius: 4px;
+    color: white;
+    box-shadow: 1px 1px 10px rgb(89, 186, 204, 0.2);
+}
+
+.btn-edit:hover,
+.btn-delete:hover {
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
