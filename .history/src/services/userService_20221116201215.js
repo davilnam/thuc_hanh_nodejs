@@ -106,6 +106,8 @@ let createNewUser = (data) => {
           errMessage: "Your email is already in used, please try another email"
         })
       } else {
+
+
         let hashPasswordFromBcrypt = await hashUserPassword(data.password);
         await db.User.create({
           email: data.email,

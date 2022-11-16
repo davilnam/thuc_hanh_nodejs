@@ -103,26 +103,25 @@ let createNewUser = (data) => {
       if (check === true) {
         resolve({
           errCode: 1,
-          errMessage: "Your email is already in used, please try another email"
-        })
-      } else {
-        let hashPasswordFromBcrypt = await hashUserPassword(data.password);
-        await db.User.create({
-          email: data.email,
-          password: hashPasswordFromBcrypt,
-          firstName: data.firstName,
-          lastName: data.lastName,
-          address: data.address,
-          phoneNumber: data.phoneNumber,
-          gender: data.gender === '1' ? true : false,
-          roleId: data.roleId
-        });
-
-        resolve({
-          errCode: 0,
-          message: "ok"
+          message: "Your email is already in used, please try another email"
         })
       }
+      let hashPasswordFromBcrypt = await hashUserPassword(data.password);
+      await db.User.create({
+        email: data.email,
+        password: hashPasswordFromBcrypt,
+        firstName: data.firstName,
+        lastName: data.lastName,
+        address: data.address,
+        phoneNumber: data.phoneNumber,
+        gender: data.gender === '1' ? true : false,
+        roleId: data.roleId
+      });
+
+      resolve({
+        errCode: 0,
+        message: "ok"
+      })
     } catch (e) {
       reject(e);
     }
@@ -153,12 +152,6 @@ let deleteUser = (userId) => {
 let updateDataUser = (data) => {
   return new Promise(async (resolve, reject) => {
     try {
-      if (!data.id) {
-        resolve({
-          errCode: 2,
-          errMessage: "Missing required parameters!"
-        })
-      }
       let user = await db.User.findOne({
         where: { id: data.id },
         raw: false
