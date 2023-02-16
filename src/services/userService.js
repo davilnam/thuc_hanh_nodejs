@@ -185,6 +185,29 @@ let updateDataUser = (data) => {
   })
 }
 
+const getAllCodeService = (inputType) => {
+  return new Promise(async (resolve, reject) => {
+    try {
+      let res = {};
+      if (inputType) {
+        let allcode = await db.Allcode.findAll({
+          where: { type: inputType }
+        });
+        res.errCode = 0;
+        res.errMessage = "ok";
+        res.data = allcode;
+      } else {
+        res.errCode = 1;
+        res.errMessage = "Missing required paramaters";
+      }
+      resolve(res);
+    } catch (e) {
+      reject(e);
+    }
+  })
+}
+
 module.exports = {
-  handleUserLogin, getAllUser, createNewUser, deleteUser, updateDataUser
+  handleUserLogin, getAllUser, createNewUser, deleteUser, updateDataUser,
+  getAllCodeService
 }
